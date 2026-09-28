@@ -1,0 +1,23 @@
+@startuml
+actor Aspirante
+participant "Interfaz de Usuario" as UI
+participant "Controlador de Postulaciones" as CP
+database "Base de Datos" as DB
+participant "Servicio de Correo Externo" as Correo
+
+Aspirante -> UI : Buscar vacante
+UI -> DB : Consultar ofertas disponibles
+DB --> UI : Lista de vacantes
+UI -> Aspirante : Mostrar resultados
+
+Aspirante -> UI : Seleccionar vacante y postularse
+UI -> CP : Enviar datos de postulación
+CP -> DB : Registrar postulación
+DB --> CP : Confirmación de registro
+
+CP -> Correo : Enviar notificación "Postulación exitosa"
+Correo --> CP : Confirmación de envío
+CP -> UI : Notificación de éxito
+UI -> Aspirante : Mostrar mensaje de confirmación
+
+@enduml

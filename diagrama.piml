@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+actor Aspirante
+actor Reclutador
+actor "Servicio de Correo Externo" as Correo
+
+rectangle "TalentTrack" {
+  (Registro de Perfiles) as UC1
+  (Búsqueda de Vacantes) as UC2
+  (Postulación a Vacantes) as UC3
+  (Gestión de Vacantes) as UC4
+  (Evaluación de Candidatos) as UC5
+  (Agendar Entrevistas) as UC6
+  (Registrar Calificaciones/Comentarios) as UC7
+  (Notificaciones Automáticas) as UC8
+}
+
+Aspirante --> UC1
+Aspirante --> UC2
+Aspirante --> UC3
+
+Reclutador --> UC4
+Reclutador --> UC5
+Reclutador --> UC6
+Reclutador --> UC7
+
+UC3 --> UC8 : <<include>>
+UC7 --> UC8 : <<include>>
+
+UC8 --> Correo
+
+@enduml
